@@ -6,6 +6,6 @@ npm install electron --save-dev --registry=https://registry.npmmirror.com
 npm start - For Electron App
 index.html - For web app
 
-# Features Now Implemented
+# Features Implemented
 
 - eye-motion detection ✓ Working
