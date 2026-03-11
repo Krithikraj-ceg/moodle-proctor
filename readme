@@ -1,9 +1,0 @@
-prerequesites
-npm init -y
-npm install electron 
-npm install electron --save-dev --registry=https://registry.npmmirror.com
-
-
-Features Now Implemented 
-
-eye-motion detection 
