@@ -1,0 +1,46 @@
+prerequesites
+npm init -y
+npm install electron 
+npm install electron --save-dev --registry=https://registry.npmmirror.com
+
+
+Features Now Implemented 
+
+Your Browser Activity Monitoring team now covers:
+
+1.Fullscreen Enforcement
+
+Start exam → fullscreen
+Detect exit
+Force fullscreen again
+
+2.Keyboard Shortcut Monitoring
+
+Blocks:
+Ctrl+C
+Ctrl+V
+Ctrl+A
+Ctrl+T
+Ctrl+N
+Ctrl+P
+Ctrl+S
+F12
+
+3.Developer Tools Detection
+
+Detects:
+DevTools opened
+Console usage attempts
+Window resizing due to DevTools
+
+4.Multiple Browser Instance Detection
+
+Detects:
+Same exam open in multiple windows
+Uses localStorage
+
+Action:
+
+Log violation
+Show warning
+

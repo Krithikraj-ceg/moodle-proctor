@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Proctoring - Eye Tracking</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      height: 100vh;
+    }
+
+    .left-panel {
+      flex: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: radial-gradient(circle at top, #1e293b, #020617);
+    }
+
+    video, canvas {
+      border-radius: 16px;
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.8);
+    }
+
+    video {
+      transform: scaleX(-1); /* mirror for natural feel */
+      display: block;        /* show camera feed */
+    }
+
+    canvas {
+      position: absolute;
+    }
+
+    .right-panel {
+      flex: 1;
+      padding: 24px;
+      border-left: 1px solid rgba(148, 163, 184, 0.2);
+      background: linear-gradient(to bottom, #020617, #020617);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 16px;
+      padding: 16px 20px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .value {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .value.ok {
+      color: #4ade80;
+    }
+
+    .value.warn {
+      color: #facc15;
+    }
+
+    .value.alert {
+      color: #f97373;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      margin-right: 6px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .status-row span {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    .status-ok    { background: #22c55e; box-shadow: 0 0 12px #22c55e55; }
+    .status-warn  { background: #eab308; box-shadow: 0 0 12px #eab30855; }
+    .status-alert { background: #ef4444; box-shadow: 0 0 12px #ef444455; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+    }
+  </style>
+
+  <!-- MediaPipe FaceMesh + helpers from jsDelivr CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+</head>
+<body>
+  <div class="left-panel">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="overlay"></canvas>
+  </div>
+
+  <div class="right-panel">
+    <div class="card">
+      <div class="title">AI Proctoring</div>
+      <div class="pill">
+        <span style="width:8px;height:8px;border-radius:9999px;background:#22c55e;box-shadow:0 0 8px #22c55e;"></span>
+        Live Eye Tracking
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">Face</div>
+      <div id="face-status" class="value">Initializing...</div>
+      <div class="status-row">
+        <div id="face-dot" class="dot status-warn"></div>
+        <span id="face-note">Waiting for camera</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">Gaze Direction</div>
+      <div id="gaze-value" class="value">–</div>
+    </div>
+
+    <div class="card">
+      <div class="label">Eyes</div>
+      <div id="eye-value" class="value">–</div>
+    </div>
+  </div>
+
+  <script src="./renderer.js"></script>
+</body>
+</html>
