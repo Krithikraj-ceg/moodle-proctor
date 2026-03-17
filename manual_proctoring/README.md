@@ -1,11 +1,9 @@
-
 # 📁 Project Setup
 
 ## 1. Create the Project Folder
 
 mkdir proctoring-app
 cd proctoring-app
-
 
 Inside the **proctoring-app** folder, place all the files from this repository.
 
@@ -43,7 +41,6 @@ Install the required packages:
 
 npm install electron --save-dev
 npm install axios
-
 
 ---
 
@@ -95,7 +92,6 @@ npm init -y
 npm install express cors
 node server.js
 
-
 ---
 
 # 🚀 Development Workflow
@@ -109,14 +105,12 @@ node server.js
 
 ### Terminal 2 – Electron App
 
-
 npm start
 
-
 ### Inside application
+
 (Data values given in backend)
-# Email : asif@gmail.com
-# Password : 1234 
 
+# Email : user
 
-
+# Password : password
