@@ -1,0 +1,17 @@
+# AI Proctoring System v3 — Complete Edition
+# Python >= 3.10 required
+
+# Core vision
+opencv-python>=4.9.0
+mediapipe>=0.10.9
+ultralytics>=8.1.0
+numpy>=1.24.0
+
+# Audio detection
+pyaudio>=0.2.14
+
+# Tab/window monitoring
+pywin32>=306; sys_platform == "win32"
+
+# PDF report generation
+reportlab>=4.1.0

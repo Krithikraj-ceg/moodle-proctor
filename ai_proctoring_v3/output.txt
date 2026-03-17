@@ -1,0 +1,2 @@
+cd ai_proctoring
+C:\Users\agash\Downloads\ai_proctoring\.venv\Scripts\python.exe main.py
